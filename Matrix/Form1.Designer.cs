@@ -46,7 +46,7 @@
             this._dgvC = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.saveC = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this._butCalc = new System.Windows.Forms.Button();
             this._tbMC = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this._tbNC = new System.Windows.Forms.TextBox();
@@ -92,6 +92,7 @@
             // 
             // _dgvA
             // 
+            this._dgvA.AllowUserToAddRows = false;
             this._dgvA.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this._dgvA.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this._dgvA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -136,6 +137,7 @@
             // 
             // _dgvB
             // 
+            this._dgvB.AllowUserToAddRows = false;
             this._dgvB.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this._dgvB.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this._dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -155,17 +157,18 @@
             this._butRandom.TabIndex = 15;
             this._butRandom.Text = "Сгенерировать значения матриц";
             this._butRandom.UseVisualStyleBackColor = true;
+            this._butRandom.Click += new System.EventHandler(this._butRandom_Click);
             // 
             // _cbOp
             // 
-            this._cbOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._cbOp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this._cbOp.FormattingEnabled = true;
             this._cbOp.Items.AddRange(new object[] {
-            "+",
-            "x"});
+            "Сложение",
+            "Произведение"});
             this._cbOp.Location = new System.Drawing.Point(127, 305);
             this._cbOp.Name = "_cbOp";
-            this._cbOp.Size = new System.Drawing.Size(121, 28);
+            this._cbOp.Size = new System.Drawing.Size(121, 21);
             this._cbOp.TabIndex = 16;
             this._cbOp.SelectedIndexChanged += new System.EventHandler(this._cbOp_SelectedIndexChanged);
             // 
@@ -206,6 +209,7 @@
             this._dgvC.ColumnHeadersVisible = false;
             this._dgvC.Location = new System.Drawing.Point(501, 69);
             this._dgvC.Name = "_dgvC";
+            this._dgvC.ReadOnly = true;
             this._dgvC.RowHeadersVisible = false;
             this._dgvC.Size = new System.Drawing.Size(200, 200);
             this._dgvC.TabIndex = 20;
@@ -228,16 +232,18 @@
             this.saveC.TabIndex = 22;
             this.saveC.Text = "Сохранить матрицу";
             this.saveC.UseVisualStyleBackColor = true;
+            this.saveC.Click += new System.EventHandler(this.saveC_Click);
             // 
-            // button2
+            // _butCalc
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(309, 286);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 47);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Вычислить матрицу С";
-            this.button2.UseVisualStyleBackColor = true;
+            this._butCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._butCalc.Location = new System.Drawing.Point(309, 286);
+            this._butCalc.Name = "_butCalc";
+            this._butCalc.Size = new System.Drawing.Size(119, 47);
+            this._butCalc.TabIndex = 23;
+            this._butCalc.Text = "Вычислить матрицу С";
+            this._butCalc.UseVisualStyleBackColor = true;
+            this._butCalc.Click += new System.EventHandler(this._butCalc_Click);
             // 
             // _tbMC
             // 
@@ -301,7 +307,7 @@
             this.Controls.Add(this._tbMC);
             this.Controls.Add(this.label7);
             this.Controls.Add(this._tbNC);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this._butCalc);
             this.Controls.Add(this.saveC);
             this.Controls.Add(this.label6);
             this.Controls.Add(this._dgvC);
@@ -321,7 +327,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this._dgvA);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Широков М.О. гр. 3-47 лаб. №2";
             ((System.ComponentModel.ISupportInitialize)(this._dgvA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._dgvB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._dgvC)).EndInit();
@@ -350,7 +356,7 @@
         private System.Windows.Forms.DataGridView _dgvC;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button saveC;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button _butCalc;
         private System.Windows.Forms.TextBox _tbMC;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox _tbNC;
