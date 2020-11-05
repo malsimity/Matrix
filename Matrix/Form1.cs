@@ -47,16 +47,17 @@ namespace Matrix
             for (int i = 0; i < nA; i++)
                 for (int j = 0; j < mA; j++)
                 {
-                    a[i,j] = Convert.ToInt32(_dgvA.Rows[i].Cells[j].Value);
+                    a[i,j] = Convert.ToDouble(_dgvA.Rows[i].Cells[j].Value);
                 }
             int nB = _dgvB.RowCount;
             int mB = _dgvB.ColumnCount;
             for (int i = 0; i < nB; i++)
                 for (int j = 0; j < mB; j++)
                 {
-                    b[i, j] = Convert.ToInt32(_dgvB.Rows[i].Cells[j].Value);
+                    b[i, j] = Convert.ToDouble(_dgvB.Rows[i].Cells[j].Value);
                 }
         }
+
         private void _cbOp_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_cbOp.SelectedIndex == 0)
@@ -85,14 +86,26 @@ namespace Matrix
 
         private void _butRandom_Click(object sender, EventArgs e)
         {
-            
+            int nA = _dgvA.RowCount;
+            int mA = _dgvA.ColumnCount;
+            int nB = _dgvB.RowCount;
+            int mB = _dgvB.ColumnCount;
+            double[,] a = new double[nA, mA];
+            double[,] b = new double[nB, mB];
+            Calculator<double> calc = new Calculator<double>();
+            calc.Generation(a, b, (x, y) => x * (y+3)-6);
+            for (int i = 0; i < nA; i++)
+                for (int j = 0; j < mA; j++)
+                    _dgvA.Rows[i].Cells[j].Value = a[i, j];
+            for (int i = 0; i < nB; i++)
+                for (int j = 0; j < mB; j++)
+                    _dgvB.Rows[i].Cells[j].Value = b[i, j];
         }
 
         private void saveC_Click(object sender, EventArgs e)
         {
             string way = Directory.GetCurrentDirectory() + "\\Matrix_C.csv";
             StreamWriter sw = new StreamWriter(way);
-            string line = "";
             int nC = Convert.ToInt32(_tbNC.Text);
             int mC = Convert.ToInt32(_tbMC.Text);
             for (int i = 0; i < nC; i++)
@@ -100,7 +113,7 @@ namespace Matrix
                 sw.Write("\t");
                 for (int j = 0; j < mC; j++)
                 {
-                    sw.Write(Convert.ToString(_dgvA.Rows[i].Cells[j].Value) + ";");
+                    sw.Write(Convert.ToString(_dgvC.Rows[i].Cells[j].Value) + ";");
                     sw.Write("\t");
                 }
                 sw.WriteLine();
@@ -111,7 +124,7 @@ namespace Matrix
 
         private void _butCalc_Click(object sender, EventArgs e)
         {
-           Calculator calc = new Calculator();
+            Calculator<double> calc = new Calculator<double>();
             Stopwatch time = new Stopwatch();
             TimeSpan resulttime;
             time.Restart();
