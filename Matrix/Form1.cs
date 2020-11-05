@@ -18,7 +18,7 @@ namespace Matrix
         public Form1()
         {
             InitializeComponent();
-            _cbOp.SelectedIndex = 0;
+            _cbOp.SelectedIndex = 1;
             _tbMA.Text = "5";
             _tbMB.Text = "5";
             _tbNA.Text = "5";
@@ -145,7 +145,7 @@ namespace Matrix
                 _tbMC.Text = Convert.ToString(mB);
                 Calculator<double> a = new Calculator<double>(nA, mA);
                 Calculator<double> b = new Calculator<double>(nA, mA);
-                Calculator<double> c = new Calculator<double>(nA, mA);
+                Calculator<double> c = new Calculator<double>(mA, nA);
                 Extract(a, b);
                 c = a + b;
                 for (int i = 0; i < nB; i++)

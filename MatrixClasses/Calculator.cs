@@ -20,7 +20,6 @@ namespace MatrixClasses
             arr = new T[n, m];
         }
 
-
         public T this[int index1, int index2]
         {
             get
@@ -72,7 +71,7 @@ namespace MatrixClasses
                 Exception ex = new ArgumentException("Кол-во стоблцов матрицы А не совпадает с кол-вом строк матрицы В");
                 throw ex;
             }
-            Calculator<T> arrC = new Calculator<T>(nA, mA);
+            Calculator<T> arrC = new Calculator<T>(nA, mB);
             for (int i = 0; i < nA; i++)
                 for (int j = 0; j < mB; j++)
                     for (int k = 0; k < mA; k++)
