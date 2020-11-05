@@ -40,7 +40,7 @@ namespace Matrix
                 }
         }
 
-        public void Extract(double [,] a, double [,] b)
+        public void Extract(Calculator<double> a, Calculator<double> b)
         {
             int nA = _dgvA.RowCount;
             int mA = _dgvA.ColumnCount;
@@ -90,10 +90,11 @@ namespace Matrix
             int mA = _dgvA.ColumnCount;
             int nB = _dgvB.RowCount;
             int mB = _dgvB.ColumnCount;
-            double[,] a = new double[nA, mA];
-            double[,] b = new double[nB, mB];
-            Calculator<double> calc = new Calculator<double>();
-            calc.Generation(a, b, (x, y) => x * (y+3)-6);
+            Calculator<double> a = new Calculator<double>(nA, mA);
+            Calculator<double> b = new Calculator<double>(nB, mB);
+            Random ran = new Random();
+            a.Generation((x, y) => (x * (y - 2) + 14)*ran.Next(-10,10));
+            b.Generation((x, y) => (2 * x * (2*y + 7) + 14) * ran.Next(-10,10));
             for (int i = 0; i < nA; i++)
                 for (int j = 0; j < mA; j++)
                     _dgvA.Rows[i].Cells[j].Value = a[i, j];
@@ -124,7 +125,6 @@ namespace Matrix
 
         private void _butCalc_Click(object sender, EventArgs e)
         {
-            Calculator<double> calc = new Calculator<double>();
             Stopwatch time = new Stopwatch();
             TimeSpan resulttime;
             time.Restart();
@@ -143,10 +143,11 @@ namespace Matrix
                 _dgvC.ColumnCount = _dgvA.ColumnCount;
                 _tbNC.Text = Convert.ToString(nB);
                 _tbMC.Text = Convert.ToString(mB);
-                double[,] a = new double[nB, mB];
-                double[,] b = new double[nB, mB];
+                Calculator<double> a = new Calculator<double>(nA, mA);
+                Calculator<double> b = new Calculator<double>(nA, mA);
+                Calculator<double> c = new Calculator<double>(nA, mA);
                 Extract(a, b);
-                double[,] c = calc.Sum(a, b);
+                c = a + b;
                 for (int i = 0; i < nB; i++)
                     for (int j = 0; j < mB; j++)
                     {
@@ -168,10 +169,11 @@ namespace Matrix
                 _dgvC.ColumnCount = _dgvB.ColumnCount;
                 _tbNC.Text = Convert.ToString(nA);
                 _tbMC.Text = Convert.ToString(mB);
-                double[,] a = new double[nA, mA];
-                double[,] b = new double[nB, mB];
+                Calculator<double> a = new Calculator<double>(nA, mA);
+                Calculator<double> b = new Calculator<double>(nB, mB);
+                Calculator<double> c = new Calculator<double>(nA, mB);
                 Extract(a, b);
-                double[,] c = calc.Composition(a, b);
+                c = a * b;
                 for (int i = 0; i < nA; i++)
                     for (int j = 0; j < mB; j++)
                     {
