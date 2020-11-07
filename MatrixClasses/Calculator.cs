@@ -66,7 +66,7 @@ namespace MatrixClasses
             int mA = arrA.m;
             int nB = arrB.n;
             int mB = arrB.m;
-            if ((nA != mB) || (mA != nB))
+            if ((mA != nB))
             {
                 Exception ex = new ArgumentException("Кол-во стоблцов матрицы А не совпадает с кол-вом строк матрицы В");
                 throw ex;

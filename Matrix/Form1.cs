@@ -18,7 +18,7 @@ namespace Matrix
         public Form1()
         {
             InitializeComponent();
-            _cbOp.SelectedIndex = 1;
+            _cbOp.SelectedIndex = 0;
             _tbMA.Text = "5";
             _tbMB.Text = "5";
             _tbNA.Text = "5";
@@ -160,7 +160,7 @@ namespace Matrix
                 int mA = _dgvA.ColumnCount;
                 int nB = _dgvB.RowCount;
                 int mB = _dgvB.ColumnCount;
-                if ((nA != mB) || (mA != nB))
+                if ((mA != nB))
                 {
                     Exception ex = new ArgumentException("Кол-во стоблцов матрицы А не совпадает с кол-вом строк матрицы В");
                     throw ex;
