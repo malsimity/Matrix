@@ -64,6 +64,7 @@
             this._tbMA.Name = "_tbMA";
             this._tbMA.Size = new System.Drawing.Size(60, 20);
             this._tbMA.TabIndex = 9;
+            this._tbMA.TextChanged += new System.EventHandler(this._tbMA_TextChanged);
             // 
             // label2
             // 
@@ -80,6 +81,7 @@
             this._tbNA.Name = "_tbNA";
             this._tbNA.Size = new System.Drawing.Size(60, 20);
             this._tbNA.TabIndex = 7;
+            this._tbNA.TextChanged += new System.EventHandler(this._tbNA_TextChanged);
             // 
             // label1
             // 
@@ -109,6 +111,7 @@
             this._tbMB.Name = "_tbMB";
             this._tbMB.Size = new System.Drawing.Size(60, 20);
             this._tbMB.TabIndex = 14;
+            this._tbMB.TextChanged += new System.EventHandler(this._tbMB_TextChanged);
             // 
             // label3
             // 
@@ -125,6 +128,7 @@
             this._tbNB.Name = "_tbNB";
             this._tbNB.Size = new System.Drawing.Size(60, 20);
             this._tbNB.TabIndex = 12;
+            this._tbNB.TextChanged += new System.EventHandler(this._tbNB_TextChanged);
             // 
             // label4
             // 
@@ -203,6 +207,7 @@
             // 
             // _dgvC
             // 
+            this._dgvC.AllowUserToAddRows = false;
             this._dgvC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this._dgvC.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this._dgvC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

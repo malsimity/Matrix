@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MatrixClasses;
-using System.IO;
+﻿using MatrixClasses;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Matrix
 {
@@ -38,6 +31,8 @@ namespace Matrix
                     _dgvB.Rows[i].Cells[j].Value = 0;
                     _dgvC.Rows[i].Cells[j].Value = 0;
                 }
+            _butRandom.Enabled = true;
+            _butCalc.Enabled = true;
         }
 
         public void Extract(Calculator<double> a, Calculator<double> b)
@@ -56,6 +51,12 @@ namespace Matrix
                 {
                     b[i, j] = Convert.ToDouble(_dgvB.Rows[i].Cells[j].Value);
                 }
+        }
+
+        private void Block()
+        {
+            _butRandom.Enabled = false;
+            _butCalc.Enabled = false;
         }
 
         private void _cbOp_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,6 +83,8 @@ namespace Matrix
             for (int i = 0; i < nB; i++)
                 for (int j = 0; j < mB; j++)
                     _dgvB.Rows[i].Cells[j].Value = 0;
+            _butRandom.Enabled = true;
+            _butCalc.Enabled = true;
         }
 
         private void _butRandom_Click(object sender, EventArgs e)
@@ -127,7 +130,6 @@ namespace Matrix
         {
             Stopwatch time = new Stopwatch();
             TimeSpan resulttime;
-            time.Restart();
             if (_cbOp.SelectedIndex == 0)
             {
                 int nA = _dgvA.RowCount;
@@ -147,7 +149,9 @@ namespace Matrix
                 Calculator<double> b = new Calculator<double>(nA, mA);
                 Calculator<double> c = new Calculator<double>(mA, nA);
                 Extract(a, b);
-                c = a + b;
+                time.Restart();
+                c = a * b;
+                time.Stop();
                 for (int i = 0; i < nB; i++)
                     for (int j = 0; j < mB; j++)
                     {
@@ -173,16 +177,37 @@ namespace Matrix
                 Calculator<double> b = new Calculator<double>(nB, mB);
                 Calculator<double> c = new Calculator<double>(nA, mB);
                 Extract(a, b);
+                time.Restart();
                 c = a * b;
+                time.Stop();
                 for (int i = 0; i < nA; i++)
                     for (int j = 0; j < mB; j++)
                     {
                         _dgvC.Rows[i].Cells[j].Value = c[i, j];
                     }
             }
-            time.Stop();
             resulttime = time.Elapsed;
             _tbTimeC.Text = Convert.ToString(resulttime.TotalMilliseconds);
+        }
+
+        private void _tbNA_TextChanged(object sender, EventArgs e)
+        {
+            Block();
+        }
+
+        private void _tbMA_TextChanged(object sender, EventArgs e)
+        {
+            Block();
+        }
+
+        private void _tbNB_TextChanged(object sender, EventArgs e)
+        {
+            Block();
+        }
+
+        private void _tbMB_TextChanged(object sender, EventArgs e)
+        {
+            Block();
         }
     }
 }
