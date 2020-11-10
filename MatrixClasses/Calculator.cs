@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace MatrixClasses
 {
@@ -11,6 +12,16 @@ namespace MatrixClasses
 
         public Calculator (int n, int m)
         {
+            if ((n <= 0) || (m <= 0))
+            {
+                Exception ex = new ArgumentException("Отрицательной рамерноси быть не может");
+                throw ex;
+            }
+            if ((typeof(T) != typeof(int)) && (typeof(T) != typeof(double)) && (typeof(T) != typeof(float)))
+            {
+                Exception ex = new ArgumentException("Тип не может быть таковым");
+                throw ex;
+            }
             this.n = n;
             this.m = m;
             arr = new T[n, m];

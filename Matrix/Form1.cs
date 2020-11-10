@@ -130,12 +130,12 @@ namespace Matrix
         {
             Stopwatch time = new Stopwatch();
             TimeSpan resulttime;
+            int nA = _dgvA.RowCount;
+            int mA = _dgvA.ColumnCount;
+            int nB = _dgvB.RowCount;
+            int mB = _dgvB.ColumnCount;
             if (_cbOp.SelectedIndex == 0)
             {
-                int nA = _dgvA.RowCount;
-                int mA = _dgvA.ColumnCount;
-                int nB = _dgvB.RowCount;
-                int mB = _dgvB.ColumnCount;
                 if ((nA != nB) || (mA != mB))
                 {
                     Exception ex = new ArgumentException("Размерности матриц А и В не совпадают");
@@ -150,7 +150,7 @@ namespace Matrix
                 Calculator<double> c = new Calculator<double>(mA, nA);
                 Extract(a, b);
                 time.Restart();
-                c = a * b;
+                c = a + b;
                 time.Stop();
                 for (int i = 0; i < nB; i++)
                     for (int j = 0; j < mB; j++)
@@ -160,10 +160,6 @@ namespace Matrix
             }
             else
             {
-                int nA = _dgvA.RowCount;
-                int mA = _dgvA.ColumnCount;
-                int nB = _dgvB.RowCount;
-                int mB = _dgvB.ColumnCount;
                 if ((mA != nB))
                 {
                     Exception ex = new ArgumentException("Кол-во стоблцов матрицы А не совпадает с кол-вом строк матрицы В");
